@@ -10,6 +10,7 @@
     "@babel/eslint-parser": "7.19.1",
     "@next/eslint-plugin-next": "13.1.1",
     "@ts-safeql/eslint-plugin": "0.0.23",
+    "@types/bl": "^5.1.0",
     "@types/eslint": "8.4.10",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
@@ -53,5 +54,9 @@
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
     "@typescript-eslint/utils": "5.47.1"
+  },
+  "dependencies": {
+    "bl": "^6.0.0",
+    "node-html-parser": "^6.1.4"
   }
 }
