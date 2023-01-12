@@ -45,27 +45,28 @@ get(website, (response) => {
         console.log('444) imgUrl', imgUrl); // logs 10 times, before anything else in the loop
         get(imgUrl, (res) => {
           res.pipe(
-            bl((error, imageData) => {
-              // if (error) {
-              //   return console.log(err);
+            bl((blError, imageData) => {
+              // if (blError) {
+              //   return console.log(blError);
               // }
               console.log(
                 `555) ${i + 1} imageData = returned buffer: `,
-                imageData,
+                imageData.length,
               );
               fs.writeFile(
                 `./memes/${(i + 1).toString().padStart(2, 0)}.jpg`,
                 imageData,
                 () => {
-                  console.log(
-                    `666) Wrote file ${(i + 1).toString().padStart(2, 0)}.jpg`, // document every run of the loop
-                  );
+                  fs.readdir('./memes', (readdirError, files) => {
+                    console.log('files', files.length);
+                  });
                 },
               );
             }),
           );
         });
       }
+      console.log('xxxxxxxxxxxxxxxx The end');
     }),
   );
 });
