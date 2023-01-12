@@ -6,10 +6,28 @@ import { parse } from 'node-html-parser';
 const website = 'https://memegen-link-examples-upleveled.netlify.app/';
 const numberOfPics = 10;
 
+// try {
+//   if (fs.existsSync('./memes')) {
+//     // Do nothing. Any files in the folder will be overwritten
+//     console.log('The memes folder already exists ...');
+//   } else {
+//     await fs.mkdir('./memes', () => {});
+//     console.log('mkdir');
+//   }
+//   console.log('Here we go!');
+// } catch (error) {
+//   console.error(
+//     'Something went wrong with preparing the memes folder: ',
+//     error.message,
+//   );
+// }
+
 if (fs.existsSync('./memes')) {
   // Do nothing. Any files in the folder will be overwritten
+  console.log('The memes folder already exists ...');
 } else {
   fs.mkdirSync('./memes');
+  console.log('mkdir');
 }
 
 get(website, (response) => {
@@ -31,6 +49,7 @@ get(website, (response) => {
                 `./memes/${(i + 1).toString().padStart(2, 0)}.jpg`,
                 imageData,
               );
+              console.log(`${(i + 1).toString().padStart(2, 0)}.jpg`);
             }),
           );
         });
