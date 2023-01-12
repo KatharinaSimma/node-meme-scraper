@@ -36,20 +36,32 @@ get(website, (response) => {
       // if (err) {
       //   return console.log(err);
       // }
+      console.log('111) data: ', data); // buffer object
+      console.log('222) data to string: ', data.toString().length); // html string ready for parsing, .length for readability
       const htmlContent = parse(data.toString()).querySelectorAll('img');
+      console.log('333) htmlContent: ', htmlContent.length); // parsed list of all 'img' objects
       for (let i = 0; i < numberOfPics; i++) {
         const imgUrl = htmlContent[i].rawAttrs.match(/(src=")(.*)(")/)[2];
+        console.log('444) imgUrl', imgUrl); // logs 10 times, before anything else in the loop
         get(imgUrl, (res) => {
           res.pipe(
             bl((error, imageData) => {
               // if (error) {
               //   return console.log(err);
               // }
-              fs.writeFileSync(
-                `./memes/${(i + 1).toString().padStart(2, 0)}.jpg`,
+              console.log(
+                `555) ${i + 1} imageData = returned buffer: `,
                 imageData,
               );
-              console.log(`${(i + 1).toString().padStart(2, 0)}.jpg`);
+              fs.writeFile(
+                `./memes/${(i + 1).toString().padStart(2, 0)}.jpg`,
+                imageData,
+                () => {
+                  console.log(
+                    `666) Wrote file ${(i + 1).toString().padStart(2, 0)}.jpg`, // document every run of the loop
+                  );
+                },
+              );
             }),
           );
         });
