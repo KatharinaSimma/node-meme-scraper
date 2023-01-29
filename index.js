@@ -39,9 +39,9 @@ get(website, (response) => {
         get(imgUrl, (res) => {
           res.pipe(
             bl((error, imageData) => {
-              //              if (error) {
-              return console.log(error);
-              //            }
+              //  if (error) {
+              //     return console.log(error);
+              //  }
               fs.writeFile(
                 `./memes/${(i + 1).toString().padStart(2, 0)}.jpg`,
                 imageData,
