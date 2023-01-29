@@ -8,7 +8,6 @@ import { parse } from 'node-html-parser';
 const website = 'https://memegen-link-examples-upleveled.netlify.app/';
 const numberOfPics = 10;
 
-// const bar1 = new cliProgress.SingleBar({}, cliProgress.Presets.rect);
 const bar1 = new cliProgress.SingleBar({
   format:
     'Memes downloaded ' +
@@ -40,9 +39,9 @@ get(website, (response) => {
         get(imgUrl, (res) => {
           res.pipe(
             bl((error, imageData) => {
-              // if (error) {
-              //   return console.log(error);
-              // }
+              //              if (error) {
+              return console.log(error);
+              //            }
               fs.writeFile(
                 `./memes/${(i + 1).toString().padStart(2, 0)}.jpg`,
                 imageData,
